@@ -21,4 +21,4 @@ datedir=$(date +%y%m%d)
 output=${ipas_output_dir}/${datedir}
 mkdir -p ${output}
 
-${shell_path}/ipa-build ${proj_checkout_path} Debug ${output}
+${shell_path}/ipa-build ${proj_checkout_path} -c Debug -o ${output}
