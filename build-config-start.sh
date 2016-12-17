@@ -22,3 +22,21 @@ output=${ipas_output_dir}/${datedir}
 mkdir -p ${output}
 
 ${shell_path}/ipa-build ${proj_checkout_path} -c Debug -o ${output}
+
+#upload pgyer
+uKey="6f7f0d3db0****bd05c629b2"
+
+apiKey="960a227****23ca4785"
+
+ipa_dir=${output}/*
+for f in $ipa_dir
+do
+	if [ -f $f ] && [ "${f##*.}" = "ipa" ]
+		then
+		echo $f
+		RESULT=$(curl -F "file=@${f}" -F "uKey=${uKey}" -F "_api_key=${apiKey}" http://www.pgyer.com/apiv1/app/upload)
+		break
+	fi
+done
+
+rm -rf ${output}
